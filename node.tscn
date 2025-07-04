@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=4 uid="uid://dygoi05ecsgcw"]
 
-[ext_resource type="Script" path="res://character.gd" id="1_hgqi5"]
+[ext_resource type="Script" path="res://scripts/UltimatePlatformerController.gd" id="1_w350x"]
 [ext_resource type="Texture2D" uid="uid://8iga78gf30kc" path="res://sprites/knight.png" id="2_505wx"]
 [ext_resource type="Texture2D" uid="uid://ccwsxvw4ao2mk" path="res://sprites/world_tileset.png" id="3_c36nq"]
 
@@ -143,6 +143,7 @@ texture = ExtResource("3_c36nq")
 4:1/0 = 0
 5:1/0 = 0
 6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:1/0 = 0
 8:1/0 = 0
 9:1/0 = 0
@@ -253,13 +254,16 @@ texture = ExtResource("3_c36nq")
 4:6/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_6pjgn"]
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_4nl60")
 
 [node name="Node" type="Node"]
 
-[node name="Character" type="CharacterBody2D" parent="."]
+[node name="Character" type="CharacterBody2D" parent="." node_paths=PackedStringArray("PlayerSprite", "PlayerCollider")]
 position = Vector2(0, -14)
-script = ExtResource("1_hgqi5")
+script = ExtResource("1_w350x")
+PlayerSprite = NodePath("AnimatedSprite2D")
+PlayerCollider = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Character"]
 texture_filter = 1
